@@ -60,6 +60,9 @@ class FlutterCoursePage extends StatelessWidget {
               buildHeader(),
               buildCourseFocus(),
               buildModules(),
+              TitleSection(
+                name: 'Projects',
+              ),
               buildProjectList(),
             ],
           ),
@@ -81,18 +84,35 @@ class FlutterCoursePage extends StatelessWidget {
   }
 
   Widget buildProjectList() {
-    final List<String> entries = <String>['A', 'B', 'C'];
+    final List<String> entries = <String>[
+      'Sudoku',
+      'Random User',
+      'Note Taking',
+      'Weather',
+      'Delivery App'
+    ];
 
     return Expanded(
       child: ListView.builder(
+        scrollDirection: Axis.vertical,
         itemCount: entries.length,
         itemBuilder: (context, posicion) {
           return Card(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(
-                entries[posicion],
-                style: TextStyle(fontSize: 22.0),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.folder,
+                    color: Colors.lightBlue,
+                  ),
+                  Text(
+                    entries[posicion],
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                  Spacer(),
+                  Icon(Icons.more_vert),
+                ],
               ),
             ),
           );
@@ -128,6 +148,7 @@ class TitleSection extends StatelessWidget {
                     name,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
+                      fontSize: 20
                     ),
                   ),
                 ),
