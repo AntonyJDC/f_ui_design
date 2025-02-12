@@ -134,7 +134,58 @@ class FlutterCoursePage extends StatelessWidget {
   }
 
   Widget buildModules() {
-
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text(
+            "Modules",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: [
+                  ModuleIconItem(
+                    icon: Icons.book,
+                    label: "Introduction",
+                    iconColor: Colors.blue,
+                  ),
+                  const SizedBox(width: 24),
+                  ModuleIconItem(
+                    icon: Icons.design_services,
+                    label: "UX Design",
+                    iconColor: Colors.green,
+                  ),
+                  const SizedBox(width: 24),
+                  ModuleIconItem(
+                    icon: Icons.storage,
+                    label: "State Management",
+                    iconColor: Colors.orange,
+                  ),
+                  const SizedBox(width: 24),
+                  ModuleIconItem(
+                    icon: Icons.bug_report,
+                    label: "Testing",
+                    iconColor: Colors.red,
+                  ),
+                  const SizedBox(width: 24),
+                  ModuleIconItem(
+                    icon: Icons.network_check,
+                    label: "Networks",
+                    iconColor: Colors.purple,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget buildProjectList() {
