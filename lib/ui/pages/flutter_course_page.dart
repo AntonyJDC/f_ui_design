@@ -6,67 +6,65 @@ class FlutterCoursePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: (Column(
-            children: [
-              Text(
-                "Flutter course",
-                style: TextStyle(color: Colors.white),
-              ),
-              Text(
-                "2025-10",
-                style: TextStyle(color: Colors.white70, fontSize: 15),
-              )
-            ],
-          )),
-          actions: <Widget>[
-            Container(
-                margin: EdgeInsets.all(3),
-                decoration: ShapeDecoration(
-                  color: Colors.black45,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.search,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                )),
-            Container(
-                margin: EdgeInsets.all(5),
-                decoration: ShapeDecoration(
-                  color: Colors.black45,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.notifications,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                )),
+      appBar: AppBar(
+        title: (Column(          
+          children: [
+            Text(
+              "Flutter course",
+              style: TextStyle(color: Colors.white),
+            ),
+            Text(
+              "2025-10",
+              style: TextStyle(color: Colors.white70, fontSize: 15),
+            )
           ],
-          backgroundColor: Colors.indigo,
-        ),
-        body: Container(
-          // you may remove this widget if you don't want to use it
-          child: Column(
-            children: <Widget>[
-              buildHeader(),
-              buildCourseFocus(),
-              buildModules(),
-              TitleSection(
-                name: 'Projects',
+        )),
+        actions: <Widget>[
+          Container(
+              margin: EdgeInsets.all(3),
+              decoration: ShapeDecoration(
+                color: Colors.black45,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
-              buildProjectList(),
-            ],
+              child: IconButton(
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+                onPressed: () {},
+              )),
+          Container(
+              margin: EdgeInsets.all(5),
+              decoration: ShapeDecoration(
+                color: Colors.black45,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              child: IconButton(
+                icon: Icon(
+                  Icons.notifications,
+                  color: Colors.white,
+                ),
+                onPressed: () {},
+              )),
+        ],
+        backgroundColor: Colors.indigo,
+      ),
+      body: Column(
+        children: <Widget>[
+          buildHeader(),
+          buildCourseFocus(),
+          buildModules(),
+          TitleSection(
+            name: 'Projects',
           ),
-        ));
+          buildProjectList(),
+        ],
+      ),
+    );
   }
 
   Widget buildHeader() {
@@ -87,35 +85,37 @@ class FlutterCoursePage extends StatelessWidget {
           Row(
             children: [
               Expanded(
+                  flex: 2,
                   child: Column(
-                children: [
-                  Container(
-                    color: Colors.blue,
-                    height: 5,
-                  ),
-                  Text("UI dev")
-                ],
-              )),
+                    children: [
+                      Container(
+                        color: Colors.blue,
+                        height: 5,
+                      ),
+                      Text("UI dev")
+                    ],
+                  )),
+              Expanded(
+                  flex: 2,
+                  child: Column(
+                    children: [
+                      Container(
+                        color: Colors.green,
+                        height: 5,
+                      ),
+                      Text("Architecture")
+                    ],
+                  )),
               Expanded(
                   child: Column(
-                children: [
-                  Container(
-                    color: Colors.green,
-                    height: 5,
-                  ),
-                  Text("Architecture")
-                ],
-              )),
-              Expanded(
-                  child: Column(
-                children: [
-                  Container(
-                    color: Colors.red,
-                    height: 5,
-                  ),
-                  Text("Design")
-                ],
-              )),
+                    children: [
+                      Container(
+                        color: Colors.red,
+                        height: 5,
+                      ),
+                      Text("Design")
+                    ],
+                  )),
               Expanded(
                   child: Column(
                 children: [
