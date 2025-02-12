@@ -74,13 +74,118 @@ class FlutterCoursePage extends StatelessWidget {
   }
 
   Widget buildCourseFocus() {
-    return TitleSection(
-      name: 'Flutter course',
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Course Focus",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                  child: Column(
+                children: [
+                  Container(
+                    color: Colors.blue,
+                    height: 5,
+                  ),
+                  Text("UI dev")
+                ],
+              )),
+              Expanded(
+                  child: Column(
+                children: [
+                  Container(
+                    color: Colors.green,
+                    height: 5,
+                  ),
+                  Text("Architecture")
+                ],
+              )),
+              Expanded(
+                  child: Column(
+                children: [
+                  Container(
+                    color: Colors.red,
+                    height: 5,
+                  ),
+                  Text("Design")
+                ],
+              )),
+              Expanded(
+                  child: Column(
+                children: [
+                  Container(
+                    color: Colors.yellow,
+                    height: 5,
+                  ),
+                  Text("Testing")
+                ],
+              ))
+            ],
+          ),
+        ],
+      ),
     );
   }
 
   Widget buildModules() {
-    return const Text("Modules");
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text(
+            "Modules",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: [
+                  ModuleIconItem(
+                    icon: Icons.book,
+                    label: "Introduction",
+                    iconColor: Colors.blue,
+                  ),
+                  const SizedBox(width: 24),
+                  ModuleIconItem(
+                    icon: Icons.design_services,
+                    label: "UX Design",
+                    iconColor: Colors.green,
+                  ),
+                  const SizedBox(width: 24),
+                  ModuleIconItem(
+                    icon: Icons.storage,
+                    label: "State Management",
+                    iconColor: Colors.orange,
+                  ),
+                  const SizedBox(width: 24),
+                  ModuleIconItem(
+                    icon: Icons.bug_report,
+                    label: "Testing",
+                    iconColor: Colors.red,
+                  ),
+                  const SizedBox(width: 24),
+                  ModuleIconItem(
+                    icon: Icons.network_check,
+                    label: "Networks",
+                    iconColor: Colors.purple,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget buildProjectList() {
@@ -147,9 +252,7 @@ class TitleSection extends StatelessWidget {
                   child: Text(
                     name,
                     style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20
-                    ),
+                        fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
               ],
@@ -157,6 +260,70 @@ class TitleSection extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class ModuleItem extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+
+  const ModuleItem({
+    Key? key,
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          Icon(icon, size: 24),
+          const SizedBox(width: 16),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+              Text(subtitle, style: const TextStyle(color: Colors.grey)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ModuleIconItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color iconColor;
+
+  const ModuleIconItem({
+    Key? key,
+    required this.icon,
+    required this.label,
+    required this.iconColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Icon(icon, size: 40, color: iconColor),
+        ),
+        const SizedBox(height: 8),
+        Text(label, style: const TextStyle(fontSize: 12)),
+      ],
     );
   }
 }
