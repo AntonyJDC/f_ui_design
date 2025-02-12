@@ -6,64 +6,65 @@ class FlutterCoursePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: (Column(
-            children: [
-              Text(
-                "Flutter course",
-                style: TextStyle(color: Colors.white),
-              ),
-              Text(
-                "2025-10",
-                style: TextStyle(color: Colors.white70, fontSize: 15),
-              )
-            ],
-          )),
-          actions: <Widget>[
-            Container(
-                margin: EdgeInsets.all(3),
-                decoration: ShapeDecoration(
-                  color: Colors.black45,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.search,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                )),
-            Container(
-                margin: EdgeInsets.all(5),
-                decoration: ShapeDecoration(
-                  color: Colors.black45,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.notifications,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                )),
+      appBar: AppBar(
+        title: (Column(          
+          children: [
+            Text(
+              "Flutter course",
+              style: TextStyle(color: Colors.white),
+            ),
+            Text(
+              "2025-10",
+              style: TextStyle(color: Colors.white70, fontSize: 15),
+            )
           ],
-          backgroundColor: Colors.indigo,
-        ),
-        body: Container(
-          // you may remove this widget if you don't want to use it
-          child: Column(
-            children: <Widget>[
-              buildHeader(),
-              buildCourseFocus(),
-              buildModules(),
-              buildProjectList(),
-            ],
+        )),
+        actions: <Widget>[
+          Container(
+              margin: EdgeInsets.all(3),
+              decoration: ShapeDecoration(
+                color: Colors.black45,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              child: IconButton(
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+                onPressed: () {},
+              )),
+          Container(
+              margin: EdgeInsets.all(5),
+              decoration: ShapeDecoration(
+                color: Colors.black45,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              child: IconButton(
+                icon: Icon(
+                  Icons.notifications,
+                  color: Colors.white,
+                ),
+                onPressed: () {},
+              )),
+        ],
+        backgroundColor: Colors.indigo,
+      ),
+      body: Column(
+        children: <Widget>[
+          buildHeader(),
+          buildCourseFocus(),
+          buildModules(),
+          TitleSection(
+            name: 'Projects',
           ),
-        ));
+          buildProjectList(),
+        ],
+      ),
+    );
   }
 
   Widget buildHeader() {
@@ -71,59 +72,101 @@ class FlutterCoursePage extends StatelessWidget {
   }
 
   Widget buildCourseFocus() {
-    return TitleSection(
-      name: 'Flutter course',
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Course Focus",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                  flex: 2,
+                  child: Column(
+                    children: [
+                      Container(
+                        color: Colors.blue,
+                        height: 5,
+                      ),
+                      Text("UI dev")
+                    ],
+                  )),
+              Expanded(
+                  flex: 2,
+                  child: Column(
+                    children: [
+                      Container(
+                        color: Colors.green,
+                        height: 5,
+                      ),
+                      Text("Architecture")
+                    ],
+                  )),
+              Expanded(
+                  child: Column(
+                    children: [
+                      Container(
+                        color: Colors.red,
+                        height: 5,
+                      ),
+                      Text("Design")
+                    ],
+                  )),
+              Expanded(
+                  child: Column(
+                children: [
+                  Container(
+                    color: Colors.yellow,
+                    height: 5,
+                  ),
+                  Text("Testing")
+                ],
+              ))
+            ],
+          ),
+        ],
+      ),
     );
   }
 
   Widget buildModules() {
-    return SafeArea(
-        child: Column(
-      children: [
-        const Text("Modules"),
-        ListView(
-          // This next line does the trick.
-          scrollDirection: Axis.horizontal,
-          children: <Widget>[
-            Container(
-              width: 160,
-              color: Colors.red,
-            ),
-            Container(
-              width: 160,
-              color: Colors.blue,
-            ),
-            Container(
-              width: 160,
-              color: Colors.green,
-            ),
-            Container(
-              width: 160,
-              color: Colors.yellow,
-            ),
-            Container(
-              width: 160,
-              color: Colors.orange,
-            ),
-          ],
-        ),
-      ],
-    ));
+
   }
 
   Widget buildProjectList() {
-    final List<String> entries = <String>['A', 'B', 'C'];
+    final List<String> entries = <String>[
+      'Sudoku',
+      'Random User',
+      'Note Taking',
+      'Weather',
+      'Delivery App'
+    ];
 
     return Expanded(
       child: ListView.builder(
+        scrollDirection: Axis.vertical,
         itemCount: entries.length,
         itemBuilder: (context, posicion) {
           return Card(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(
-                entries[posicion],
-                style: TextStyle(fontSize: 22.0),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.folder,
+                    color: Colors.lightBlue,
+                  ),
+                  Text(
+                    entries[posicion],
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                  Spacer(),
+                  Icon(Icons.more_vert),
+                ],
               ),
             ),
           );
@@ -158,8 +201,7 @@ class TitleSection extends StatelessWidget {
                   child: Text(
                     name,
                     style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                        fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
               ],
@@ -167,6 +209,70 @@ class TitleSection extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class ModuleItem extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+
+  const ModuleItem({
+    Key? key,
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          Icon(icon, size: 24),
+          const SizedBox(width: 16),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+              Text(subtitle, style: const TextStyle(color: Colors.grey)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ModuleIconItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color iconColor;
+
+  const ModuleIconItem({
+    Key? key,
+    required this.icon,
+    required this.label,
+    required this.iconColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Icon(icon, size: 40, color: iconColor),
+        ),
+        const SizedBox(height: 8),
+        Text(label, style: const TextStyle(fontSize: 12)),
+      ],
     );
   }
 }
